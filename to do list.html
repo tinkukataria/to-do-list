@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do List</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    margin: 5px 0;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .delete-btn {
+    color: red;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+  <h1>To-Do List</h1>
+  <ul id="todoList">
+    <!-- Your to-do items will be added here -->
+  </ul>
+  <input type="text" id="newTask" placeholder="New task...">
+  <button onclick="addTask()">Add</button>
+  <script>
+    function addTask() {
+      const input = document.getElementById("newTask");
+      const task = input.value;
+      if (task.trim() !== "") {
+        const ul = document.getElementById("todoList");
+        const li = document.createElement("li");
+        li.innerHTML = `
+          ${task}
+          <span class="delete-btn" onclick="removeTask(this)">Delete</span>
+        `;
+        ul.appendChild(li);
+        input.value = "";
+      }
+    }
+
+    function removeTask(element) {
+      const li = element.parentNode;
+      li.parentNode.removeChild(li);
+    }
+  </script>
+</body>
+</html>
